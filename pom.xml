@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.test.lzw</groupId>
+    <artifactId>ark-biz</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <main.user.dir>${user.dir}/..</main.user.dir>
+
+        <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
+        <sofa.ark.version>0.3.0</sofa.ark.version>
+        <ark.plugin.version>1.0-SNAPSHOT</ark.plugin.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-springboot-starter</artifactId>
+                <version>${sofa.ark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>log4j-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-container</artifactId>
+                <version>${sofa.ark.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!--ark plugin-->
+            <dependency>
+                <groupId>com.test.lzw.ark</groupId>
+                <artifactId>ark-plugin-activate</artifactId>
+                <version>${ark.plugin.version}</version>
+                <classifier>ark-plugin</classifier>
+            </dependency>
+
+            <dependency>
+                <groupId>com.test.lzw.ark</groupId>
+                <artifactId>ark-plugin-activate</artifactId>
+                <version>${ark.plugin.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--test-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-test</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-ark-springboot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-ark-container</artifactId>
+        </dependency>
+
+        <!--ark plugin-->
+        <dependency>
+            <groupId>com.test.lzw.ark</groupId>
+            <artifactId>ark-plugin-activate</artifactId>
+            <classifier>ark-plugin</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.test.lzw.ark</groupId>
+            <artifactId>ark-plugin-activate</artifactId>
+        </dependency>
+
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-maven-plugin</artifactId>
+                <version>${sofa.ark.version}</version>
+                <executions>
+                    <execution>
+                        <!--goal executed to generate executable-ark-jar -->
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+
+                        <configuration>
+                            <!--specify destination where executable-ark-jar will be saved, default saved to ${project.build.directory}-->
+                            <outputDirectory>./target</outputDirectory>
+
+                            <!--default none-->
+                            <arkClassifier>executable-ark</arkClassifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
