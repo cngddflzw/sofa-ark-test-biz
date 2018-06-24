@@ -2,7 +2,8 @@ package com.test.lzw.ark.biz.demo;
 
 import com.test.lzw.ark.biz.facade.SampleService;
 import com.test.lzw.ark.plugin.UnexportedSample;
-import com.test.lzw.ark.plugin.common.ExportedSample;
+import com.test.lzw.ark.plugin.exported.ExportedSample;
+import com.zim.test.thirdparty.TPService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
 
 @RestController
 @ImportResource({"classpath*:META-INF/spring/service.xml"})
@@ -25,22 +23,17 @@ public class SpringBootDemo {
     public static void main(String[] args) {
 //        SofaArkBootstrap.launch(args);
         SpringApplication.run(SpringBootDemo.class, args);
+
+        TPService tps = new TPService();
+        System.out.println("tps load by " + tps.getClass().getClassLoader());
+        System.out.println("ExportedSample " + ExportedSample.class.getClassLoader());
+        System.out.println("UnExportedSample " + UnexportedSample.class.getClassLoader());
+
+        // thirdparty 1.1-SNAPSHOT 版本接口
+        System.out.println(tps.echo2());
+
+        // thirdparty 1.0-SNAPSHOT 版本接口
         ExportedSample.hello();
-        UnexportedSample.hello();
-        getResources("Sample_Resource_Exported");
-        getResources("Sample_Resource_Not_Exported");
-    }
-
-    public static void getResources(String resourceName) {
-        try {
-            Enumeration<URL> resources = SpringBootDemo.class.getClassLoader().getResources(resourceName);
-
-            while (resources.hasMoreElements()) {
-                System.out.println(resourceName + " found: " + resources.nextElement());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @RequestMapping("/sampleService")

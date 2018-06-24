@@ -14,11 +14,18 @@
         <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
         <sofa.ark.version>0.3.0</sofa.ark.version>
         <ark.plugin.version>1.0-SNAPSHOT</ark.plugin.version>
+        <test.thirdparty.version>1.1-SNAPSHOT</test.thirdparty.version>
     </properties>
 
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>com.zim.test.thirdparty</groupId>
+                <artifactId>test-thirdparty</artifactId>
+                <version>${test.thirdparty.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -33,43 +40,28 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-logging</artifactId>
-                <exclusions>
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>log4j-over-slf4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-container</artifactId>
                 <version>${sofa.ark.version}</version>
                 <scope>compile</scope>
             </dependency>
 
-            <!--ark plugin-->
+            <!-- ark plugin -->
             <dependency>
                 <groupId>com.test.lzw.ark</groupId>
-                <artifactId>ark-plugin-activate</artifactId>
+                <artifactId>ark-plugin</artifactId>
                 <version>${ark.plugin.version}</version>
                 <classifier>ark-plugin</classifier>
             </dependency>
 
             <dependency>
                 <groupId>com.test.lzw.ark</groupId>
-                <artifactId>ark-plugin-activate</artifactId>
+                <artifactId>ark-plugin</artifactId>
                 <version>${ark.plugin.version}</version>
                 <scope>provided</scope>
             </dependency>
 
-            <!--test-->
+            <!-- test -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
@@ -115,13 +107,13 @@
         <!--ark plugin-->
         <dependency>
             <groupId>com.test.lzw.ark</groupId>
-            <artifactId>ark-plugin-activate</artifactId>
+            <artifactId>ark-plugin</artifactId>
             <classifier>ark-plugin</classifier>
         </dependency>
 
         <dependency>
             <groupId>com.test.lzw.ark</groupId>
-            <artifactId>ark-plugin-activate</artifactId>
+            <artifactId>ark-plugin</artifactId>
         </dependency>
 
         <!--test-->
@@ -135,6 +127,10 @@
             <artifactId>spring-boot-test</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.zim.test.thirdparty</groupId>
+            <artifactId>test-thirdparty</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
