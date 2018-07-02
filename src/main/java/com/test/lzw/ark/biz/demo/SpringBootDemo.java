@@ -1,7 +1,6 @@
 package com.test.lzw.ark.biz.demo;
 
 import com.test.lzw.ark.biz.facade.SampleService;
-import com.test.lzw.ark.plugin.UnexportedSample;
 import com.test.lzw.ark.plugin.exported.ExportedSample;
 import com.zim.test.thirdparty.TPService;
 import org.springframework.boot.SpringApplication;
@@ -21,13 +20,15 @@ public class SpringBootDemo {
     private SampleService sampleService;
 
     public static void main(String[] args) {
+
 //        SofaArkBootstrap.launch(args);
         SpringApplication.run(SpringBootDemo.class, args);
 
         TPService tps = new TPService();
         System.out.println("tps load by " + tps.getClass().getClassLoader());
+        System.out.println("SpringBootDemo " + SpringBootDemo.class.getClassLoader());
         System.out.println("ExportedSample " + ExportedSample.class.getClassLoader());
-        System.out.println("UnExportedSample " + UnexportedSample.class.getClassLoader());
+//        System.out.println("UnExportedSample " + UnexportedSample.class.getClassLoader());
 
         // thirdparty 1.1-SNAPSHOT 版本接口
         System.out.println(tps.echo2());

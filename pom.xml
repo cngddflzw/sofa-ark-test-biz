@@ -51,7 +51,6 @@
                 <groupId>com.test.lzw.ark</groupId>
                 <artifactId>ark-plugin</artifactId>
                 <version>${ark.plugin.version}</version>
-                <scope>provided</scope>
             </dependency>
 
             <dependency>
@@ -93,10 +92,17 @@
             <groupId>com.zim.test.thirdparty</groupId>
             <artifactId>test-thirdparty</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-ark-container</artifactId>
+            <version>0.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-maven-plugin</artifactId>
